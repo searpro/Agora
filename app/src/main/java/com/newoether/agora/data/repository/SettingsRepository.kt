@@ -1,8 +1,6 @@
 package com.newoether.agora.data.repository
-
 import com.newoether.agora.model.ThinkingSegmentDisplayModes
 import com.newoether.agora.model.ContextBudget
-
 import com.newoether.agora.data.ApiKeyEntry
 import com.newoether.agora.data.BuiltInPrompts
 import com.newoether.agora.data.DEFAULT_COLOR_SCHEME
@@ -43,7 +41,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-
 /**
  * Repository wrapping DataStore-backed SettingsManager.
  *
@@ -62,10 +59,8 @@ class SettingsRepository(
     private val touchConversationData: suspend (String) -> Unit = {},
 ) {
     private val publication = SettingsFlowPublication(scope)
-
     private val conversationSettingsState = ConversationSettingsState()
     private val conversationSettingsWriteMutex = Mutex()
-
     /**
      * Suspends until every settings StateFlow has received its first on-disk DataStore value.
      * Background workers must cross this barrier before reading `.value`; otherwise a cold-start
@@ -75,9 +70,7 @@ class SettingsRepository(
     suspend fun awaitInitialLoad() {
         publication.awaitInitialLoad()
     }
-
     // ── Read StateFlows (eagerly shared) ──────────────────────
-
     val selectedModel: StateFlow<String> = publication.hot(settingsManager.selectedModel, Constants.EXAMPLE_MODEL_ID)
     val anthropicCacheEnabled: StateFlow<Boolean> = publication.hot(settingsManager.anthropicCacheEnabled, true)
     val anthropicCacheTtl: StateFlow<String> = publication.hot(settingsManager.anthropicCacheTtl, "1h")
@@ -258,18 +251,15 @@ class SettingsRepository(
     val autoDeleteEnabled: StateFlow<Boolean> = publication.hot(settingsManager.autoDeleteEnabled, true)
     val autoDeletePeriodHours: StateFlow<Int> = publication.hot(settingsManager.autoDeletePeriodHours, 168)
     val lastBackupTimestamp: StateFlow<Long> = publication.hot(settingsManager.lastBackupTimestamp, 0L)
-
     // ── Write (fire-and-forget; read current state from own StateFlows) ──
     //
     // These setters launch on [scope] and read "current" list/map state from this
     // repository's own `.value`, so callers no longer pass it in. Absorbed from the
     // former `SettingsDelegate`; logic is byte-for-byte equivalent.
-
     // Model selection
     fun setSelectedModel(model: String) {
         scope.launch { settingsManager.saveSelectedModel(model) }
     }
-
     fun setEnabledModels(models: Set<String>) {
         scope.launch {
             settingsManager.saveEnabledModels(models)
@@ -278,13 +268,11 @@ class SettingsRepository(
             }
         }
     }
-
     fun updateModelAlias(model: String, alias: String, showProviderName: Boolean? = null) {
         scope.launch {
             settingsManager.updateModelAlias(model, alias, showProviderName)
         }
     }
-
     fun addCustomModel(provider: String, modelName: String, alias: String = "", showProviderName: Boolean = true) {
         val normalizedProvider = stableProviderReference(provider)
         val normalizedName = modelName.trim()
@@ -294,14 +282,12 @@ class SettingsRepository(
             settingsManager.addCustomModel(modelId, alias, showProviderName)
         }
     }
-
     suspend fun replaceCustomModel(
         oldModelId: String,
         newModelId: String?,
         alias: String,
         showProviderName: Boolean? = null,
     ) = settingsManager.replaceCustomModel(oldModelId, newModelId, alias, showProviderName)
-
     // API keys
     fun addApiKey(name: String, key: String, provider: String) {
         scope.launch {
@@ -310,7 +296,6 @@ class SettingsRepository(
             settingsManager.setActiveApiKeyId(provider, entry.id)
         }
     }
-
     /**
      * Store exactly one key for [provider]: update the existing entry in place if there
      * is one, otherwise add it — and drop any extra entries for the same provider.
@@ -325,7 +310,6 @@ class SettingsRepository(
             settingsManager.setActiveApiKeyId(provider, entry.id)
         }
     }
-
     fun deleteApiKey(id: String) {
         scope.launch {
             val current = apiKeys.value
@@ -338,17 +322,14 @@ class SettingsRepository(
             settingsManager.saveApiKeys(newList)
         }
     }
-
     fun updateApiKey(id: String, name: String, key: String) {
         scope.launch {
             settingsManager.saveApiKeys(apiKeys.value.map { if (it.id == id) it.copy(name = name, key = key) else it })
         }
     }
-
     fun setActiveApiKey(provider: String, id: String) {
         scope.launch { settingsManager.setActiveApiKeyId(provider, id) }
     }
-
     // System prompts
     fun addSystemPrompt(
         title: String,
@@ -360,7 +341,6 @@ class SettingsRepository(
             addSystemPromptAndAwait(title, systemItems, userItems, assistantItems)
         }
     }
-
     suspend fun addSystemPromptAndAwait(
         title: String,
         systemItems: List<PromptTemplateItem>,
@@ -382,13 +362,11 @@ class SettingsRepository(
         systemPrompts.first { prompts -> prompts.any { it.id == entry.id } }
         return entry.id
     }
-
     fun deleteSystemPrompt(id: String) {
         scope.launch {
             settingsManager.systemPromptStore.update { current -> current.filter { it.id != id } }
         }
     }
-
     fun updateSystemPrompt(
         id: String,
         title: String,
@@ -416,11 +394,9 @@ class SettingsRepository(
             }
         }
     }
-
     fun setActiveSystemPrompt(id: String) {
         scope.launch { settingsManager.setActiveSystemPromptId(id) }
     }
-
     // Custom provider CRUD. ProviderRegistry owns live instance construction.
     fun addCustomProvider(config: CustomProviderConfig, baseUrl: String) {
         if (
@@ -435,7 +411,6 @@ class SettingsRepository(
             settingsManager.saveCustomProviders(customProviders.value + config)
         }
     }
-
     fun renameCustomProvider(oldName: String, newName: String) {
         if (!CustomProviderNamePolicy.isAllowed(oldName)) return
         if (
@@ -466,7 +441,6 @@ class SettingsRepository(
             }
         }
     }
-
     fun setCustomProviderResponsesApiEnabled(name: String, enabled: Boolean) {
         if (!CustomProviderNamePolicy.isAllowed(name)) return
         scope.launch {
@@ -475,7 +449,6 @@ class SettingsRepository(
             })
         }
     }
-
     fun updateCustomProviderProtocol(name: String, protocol: CustomEndpointProtocol) {
         if (!CustomProviderNamePolicy.isAllowed(name)) return
         scope.launch {
@@ -486,7 +459,6 @@ class SettingsRepository(
             settingsManager.saveCustomProviders(updated)
         }
     }
-
     fun deleteCustomProvider(name: String) {
         if (!CustomProviderNamePolicy.isAllowed(name)) return
         val providerId = customProviders.value.firstOrNull { it.name == name }
@@ -510,27 +482,22 @@ class SettingsRepository(
             settingsManager.setActiveApiKeyId(name, null)
         }
     }
-
     // Image transcription
     fun addImageTranscriptionModels(models: Set<String>) = scope.launch { settingsManager.saveImageTranscriptionEnabledModels(imageTranscriptionEnabledModels.value + models) }
     fun removeImageTranscriptionModel(model: String) = scope.launch { settingsManager.saveImageTranscriptionEnabledModels(imageTranscriptionEnabledModels.value - model) }
-
     // Shell devices
     fun removeShellDevice(deviceId: String) = scope.launch { settingsManager.shellDeviceStore.remove(deviceId) }
     fun removeMcpServer(serverId: String) =
         scope.launch { settingsManager.saveMcpServers(mcpServers.value.filter { it.id != serverId }) }
-
     fun setConversationSettings(convId: String, settings: ConversationSettings?) {
         persistConversationSettings(conversationSettingsState.set(convId, settings))
     }
-
     suspend fun setConversationSettingsAndAwait(
         convId: String,
         settings: ConversationSettings?,
     ) {
         persistConversationSettingsWrite(conversationSettingsState.set(convId, settings))
     }
-
     suspend fun applyConversationSettingsImportAndAwait(
         imported: Map<String, ConversationSettings>,
         replace: Boolean,
@@ -560,7 +527,6 @@ class SettingsRepository(
     ) {
         persistConversationSettings(conversationSettingsState.update(convId, update))
     }
-
     private fun persistConversationSettings(write: ConversationSettingsWrite) {
         scope.launch {
             try {
@@ -572,7 +538,6 @@ class SettingsRepository(
             }
         }
     }
-
     private suspend fun persistConversationSettingsWrite(write: ConversationSettingsWrite) {
         conversationSettingsWriteMutex.withLock {
             if (!conversationSettingsState.isLatest(write)) return@withLock
@@ -594,7 +559,6 @@ class SettingsRepository(
             }
         }
     }
-
     // ── Simple setting toggles ────────────────────────────────
     fun setMaxContextWindow(window: Int) = scope.launch { settingsManager.saveMaxContextWindow(window) }
     fun setVisualizeContextRollout(enabled: Boolean) = scope.launch { settingsManager.saveVisualizeContextRollout(enabled) }
@@ -614,7 +578,6 @@ class SettingsRepository(
     fun setContextCompactThresholdPercent(percent: Int) = scope.launch {
         settingsManager.saveContextCompactThresholdPercent(percent)
     }
-
     fun setTitleGenerationModel(model: String?) = scope.launch { settingsManager.saveTitleGenerationModel(model) }
     fun setTitleGenerationPrompt(prompt: String) = scope.launch { settingsManager.saveTitleGenerationPrompt(prompt) }
     fun setImageTranscriptionEnabled(enabled: Boolean) =
@@ -723,12 +686,10 @@ class SettingsRepository(
             mcpServers.value.map { if (it.id == server.id) server else it },
         )
     }
-
     // ── Derived lookups ─────────────────────────────────────────
     /** Resolves the currently-active cleartext API key for [provider], or `null`. */
     fun resolveActiveKey(provider: String): String? =
         apiKeys.value.find { it.id == activeApiKeyIds.value[provider] }?.key
-
     /**
      * Like [resolveActiveKey] but awaits the on-disk DataStore values instead of
      * reading the eagerly-shared `.value`, which may still be the empty default
@@ -742,9 +703,7 @@ class SettingsRepository(
         val keys = settingsManager.apiKeys.first()
         return keys.find { it.id == activeIds[provider] }?.key
     }
-
     // Suspending accessors preserve DataStore ordering before the eager flows publish.
-
     suspend fun getAutoUpdateCheck(): Boolean = settingsManager.autoUpdateCheck.first()
     suspend fun getAutoCacheEnabled(): Boolean = settingsManager.autoCacheEnabled.first()
     suspend fun getShowUncachedNotification(): Boolean = settingsManager.showUncachedNotification.first()
@@ -756,14 +715,11 @@ class SettingsRepository(
     ) = settingsManager.saveCustomEndpointResolution(provider, resolution)
     suspend fun getAvailableModels(): Map<String, List<String>> = settingsManager.availableModels.first()
     suspend fun getSystemPrompts(): List<SystemPromptEntry> = settingsManager.systemPrompts.first()
-
     internal suspend fun normalizeCustomProviderIdentities(): List<CustomProviderIdentityMigration> =
         settingsManager.normalizeCustomProviderIdentities()
-
     internal suspend fun clearLegacyCustomProviderNames(
         completed: List<CustomProviderIdentityMigration>,
     ) = settingsManager.clearLegacyCustomProviderNames(completed)
-
     suspend fun saveAvailableModels(provider: String, models: List<String>) = settingsManager.saveAvailableModels(provider, models)
     suspend fun saveCustomModels(models: Set<String>) = settingsManager.saveCustomModels(models)
     suspend fun saveModelAliases(aliases: Map<String, String>) = settingsManager.saveModelAliases(aliases)
@@ -789,7 +745,6 @@ class SettingsRepository(
     suspend fun saveAutoBackupDirectory(path: String) = settingsManager.saveAutoBackupDirectory(path)
     suspend fun saveAutoDeleteEnabled(enabled: Boolean) = settingsManager.saveAutoDeleteEnabled(enabled)
     suspend fun saveAutoDeletePeriodHours(hours: Int) = settingsManager.saveAutoDeletePeriodHours(hours)
-
     val phoneUseStore = settingsManager.phoneUse
     val phoneUse = publication.hot(phoneUseStore.values, com.newoether.agora.phone.PhoneUseSettings())
     fun stableProviderReference(reference: String): String {

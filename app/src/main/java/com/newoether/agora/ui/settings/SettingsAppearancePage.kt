@@ -1,5 +1,4 @@
 package com.newoether.agora.ui.settings
-
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -54,7 +53,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.newoether.agora.ui.components.AgoraDropdownMenu
 import com.newoether.agora.ui.components.AgoraDropdownMenuItem
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
@@ -69,7 +67,6 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
     val parseInlineDollarMath by viewModel.settings.parseInlineDollarMath.collectAsState()
     val autoWrapCodeBlocks by viewModel.settings.autoWrapCodeBlocks.collectAsState()
     val hapticsEnabled by viewModel.settings.hapticsEnabled.collectAsState()
-
     val toolCallDisplayMode by viewModel.settings.toolCallDisplayMode.collectAsState()
     val thinkingSegmentDisplayMode by viewModel.settings.thinkingSegmentDisplayMode.collectAsState()
     val autoExpandActiveGroup by viewModel.settings.autoExpandActiveGroup.collectAsState()
@@ -85,8 +82,6 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
     val normalizedToolCallDisplayMode = ToolCallDisplayModes.normalize(toolCallDisplayMode)
     val normalizedThinkingSegmentDisplayMode =
         ThinkingSegmentDisplayModes.normalize(thinkingSegmentDisplayMode)
-
-    // Clear custom font when switching away from custom
     LaunchedEffect(fontPreference) {
         if (fontPreference != "custom" && customFontPath.isNotBlank()) {
             withContext(Dispatchers.IO) { File(customFontPath).delete() }
@@ -94,18 +89,15 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
             viewModel.settings.setCustomFontName("")
         }
     }
-
     val fontPickerLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) {
             scope.launch(Dispatchers.IO) {
                 try {
-                    // Delete old custom font file if it exists
                     customFontPath.takeIf { it.isNotBlank() }?.let { File(it).delete() }
                     val dest = File(context.filesDir, "custom_font_${java.util.UUID.randomUUID()}")
                     context.contentResolver.openInputStream(uri)?.use { input ->
                         dest.outputStream().use { output -> input.copyTo(output) }
                     }
-                    // Validate magic bytes (TTF: 0x00010000, OTTO, true, typ1)
                     val magic = ByteArray(4)
                     dest.inputStream().use { it.read(magic) }
                     val validFont = when {
@@ -131,16 +123,11 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
             }
         }
     }
-
     val isDynamicAvailable = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     val currentPreset = try { ColorSchemePreset.valueOf(colorSchemeName) } catch (_: Exception) { ColorSchemePreset.FOREST }
     val currentStyle = try { SchemeStyle.valueOf(schemeStyleName) } catch (_: Exception) { SchemeStyle.TONAL_SPOT }
     val systemDark = isSystemInDarkTheme()
-    val isDark = when (themeMode) {
-        "LIGHT" -> false
-        "DARK" -> true
-        else -> systemDark
-    }
+    val isDark = when (themeMode) { "LIGHT" -> false; "DARK" -> true; else -> systemDark }
     CollapsingSettingsScaffold(
         title = stringResource(R.string.appearance_title),
         onBack = onBack,
@@ -148,7 +135,6 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
     ) {
             SettingsGroupColumn {
                 val schemeAlpha = if (dynamicColor && isDynamicAvailable) 0.38f else 1f
-                // ── Theme & Color ──
                 SettingsGroup(
                     title = stringResource(R.string.appearance_theme_color),
                     items = buildList {
@@ -362,8 +348,6 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
                     }
                 }
                 )
-
-                // ── Motion & Feedback ──
                 SettingsGroup(
                     title = stringResource(R.string.appearance_motion_feedback),
                     items = buildList {
@@ -436,8 +420,6 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
                         }
                     }
                 )
-
-                // ── Chat Display ──
                 SettingsGroup(
                     title = stringResource(R.string.appearance_chat_display),
                     items = buildList {
@@ -681,8 +663,6 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
                         }
                     }
                 )
-
-                // ── Font ──
                 SettingsGroup(
                     title = stringResource(R.string.font_title),
                     items = buildList {
