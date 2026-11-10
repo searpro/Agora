@@ -7,9 +7,9 @@ object HtmlPreviewGuidance {
     val text: String = "\n\n" + """
         $HEADING
         - Use a closed `html-preview` fenced block for an interactive visualization in native Agora chat; it renders automatically only after the closing fence. An `html` fence shows source with a manual Run action.
-        - Keep each document self-contained with inline HTML, CSS, JavaScript, and data. HTTPS static JS/CSS/fonts may load only from cdnjs.cloudflare.com, cdn.jsdelivr.net, unpkg.com, or esm.sh, with paths ending in .js, .mjs, .css, .woff, .woff2, or .ttf. Use exact versioned URLs without query strings or redirects.
-        - Maps may load numeric PNG tiles from https://tile.openstreetmap.org/{z}/{x}/{y}.png. Do not use fetch, API requests, WebSockets, or other network access.
-        - For Local Sandbox or Conch raster images, use static quoted <img src="shell://SERVER/absolute/path.png"> sources. Percent-encode spaces in server names and paths. Do not construct shell URLs in JavaScript. Video is unsupported.
+        - Keep each document fully self-contained with inline HTML, CSS, JavaScript, fonts, and data. Do not reference external URLs, CDNs, map tiles, or remote assets.
+        - Do not use fetch, XMLHttpRequest, WebSockets, EventSource, or any other network access.
+        - For Local Sandbox raster images, use static quoted <img src="shell://Local%20Sandbox/absolute/path.png"> sources. Remote shell image sources are unavailable. Do not construct shell URLs in JavaScript. Video is unsupported.
         - Interaction state can reset on reload, re-entry, fullscreen transitions, or process restart. Do not rely on persistent storage.
     """.trimIndent()
 

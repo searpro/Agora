@@ -78,12 +78,6 @@ internal class HtmlPreviewWebView(
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val allowedFrame = request.url.toString() == document.frameUrl
                 if (!request.isForMainFrame && allowedFrame && request.method == "GET") return false
-                val uri = request.url
-                if (request.hasGesture() && request.method == "GET" &&
-                    uri.scheme in setOf("https", "http") && uri.host != null &&
-                    uri.userInfo == null && !uri.host.orEmpty().endsWith(".preview.agora.invalid")) {
-                    runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, uri)) }
-                }
                 return true
             }
 

@@ -106,14 +106,13 @@ fun SettingsShellPage(viewModel: ChatViewModel, onBack: () -> Unit) {
                                     add {
                                         SettingsItem(
                                             headlineContent = { Text(stringResource(R.string.shell_enable)) },
-                                            supportingContent = { Text(stringResource(R.string.shell_enable_desc)) },
+                                            supportingContent = { Text(stringResource(R.string.network_tools_disabled_desc)) },
                                             leadingContent = {
                                                 Icon(Icons.Default.Terminal, null, tint = MaterialTheme.colorScheme.primary)
                                             },
                                             trailingContent = {
-                                                Switch(shellEnabled, onCheckedChange = viewModel.settings::setShellEnabled)
+                                                Switch(checked = false, onCheckedChange = null, enabled = false)
                                             },
-                                            modifier = Modifier.clickable { viewModel.settings.setShellEnabled(!shellEnabled) },
                                         )
                                     }
                                     if (shellEnabled) {

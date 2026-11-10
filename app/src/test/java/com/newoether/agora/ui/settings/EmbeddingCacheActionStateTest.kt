@@ -185,31 +185,6 @@ class EmbeddingCacheActionStateTest {
             assertTrue("$label must not wrap", labelBlock.contains("softWrap = false"))
         }
     }
-    @Test
-    fun ratingContentSharesFixedCenteredBoundsAndUsesNeutralFailureSurface() {
-        val start = File(requireNotNull(System.getProperty("user.dir"))).absoluteFile
-        val root = generateSequence(start) { it.parentFile }
-            .first { File(it, "app/src/main").isDirectory }
-        val source = File(
-            root,
-            "app/src/main/java/com/newoether/agora/ui/settings/RatingForm.kt",
-        ).readText().replace("\r\n", "\n")
-        assertTrue(source.contains("Modifier.fillMaxWidth().height(52.dp)"))
-        val action = source.substringAfter("targetState = submitting to submitted,")
-        assertEquals(2, Regex("Modifier\\.fillMaxSize\\(\\)").findAll(action).count())
-        assertTrue(action.contains("animationSpec = tween(250)"))
-        assertTrue(action.indexOf("contentAlignment = Alignment.Center") <
-            action.indexOf("when {"))
-        assertTrue(action.contains("loading -> CircularProgressIndicator("))
-        assertTrue(action.contains("done -> Text("))
-        assertTrue(action.contains("else -> Text("))
-        val failure = source.substringAfter("if (submitError) {").substringBefore("val isReady")
-        assertTrue(failure.contains("color = MaterialTheme.colorScheme.surfaceContainerHigh"))
-        assertTrue(failure.contains("color = MaterialTheme.colorScheme.onSurfaceVariant,"))
-        assertFalse(failure.contains("colorScheme.errorContainer"))
-        assertFalse(failure.contains("colorScheme.onErrorContainer"))
-    }
-
     private fun cacheSource(root: File): String {
         val cache = File(root, "app/src/main/java/com/newoether/agora/ui/settings/EmbeddingCacheRow.kt")
         val source = cache.takeIf(File::isFile) ?: File(

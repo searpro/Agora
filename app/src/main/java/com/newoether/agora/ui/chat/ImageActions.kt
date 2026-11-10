@@ -109,31 +109,7 @@ private fun openImageSource(
     }
     if (url.startsWith("http://", ignoreCase = true) ||
         url.startsWith("https://", ignoreCase = true)
-    ) {
-        val temporary = File.createTempFile("image-download-", ".tmp", context.cacheDir)
-        try {
-            val downloaded = HttpClient.client.executeWithNetworkRetry(
-                Request.Builder().url(url).get().build(),
-            ) { response ->
-                if (!response.isSuccessful) false else {
-                    temporary.outputStream().use { output ->
-                        response.body.byteStream().use { copyImageBytes(it, output, checkActive) }
-                    }
-                    true
-                }
-            }
-            if (!downloaded) { temporary.delete(); return null }
-            return OpenedImageSource(
-                input = temporary.inputStream(),
-                sizeBytes = temporary.length(),
-                reopenInput = temporary::inputStream,
-                closeSource = { temporary.delete() },
-            )
-        } catch (failure: Exception) {
-            temporary.delete()
-            throw failure
-        }
-    }
+    ) return null
 
     val uri = Uri.parse(url)
     val reopenInput = {

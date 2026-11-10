@@ -33,16 +33,13 @@ class HtmlPreviewGuidanceTest {
     }
 
     @Test
-    fun guidanceDescribesCompletedFencesRestrictedResourcesAndResettableState() {
+    fun guidanceRequiresSelfContainedContentAndResettableState() {
         val text = HtmlPreviewGuidance.text
         listOf(
             "`html-preview`", "closing fence", "`html`", "manual Run", "inline HTML, CSS, JavaScript, and data",
-            "cdnjs.cloudflare.com", "cdn.jsdelivr.net", "unpkg.com", "esm.sh",
-            ".js", ".mjs", ".css", ".woff", ".woff2", ".ttf",
-            "versioned URLs", "without query strings or redirects",
-            "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-            "Do not use fetch, API requests, WebSockets, or other network access",
-            "<img src=\"shell://SERVER/absolute/path.png\">", "Percent-encode spaces",
+            "fully self-contained", "Do not reference external URLs, CDNs, map tiles, or remote assets",
+            "Do not use fetch, XMLHttpRequest, WebSockets, EventSource, or any other network access",
+            "<img src=\"shell://Local%20Sandbox/absolute/path.png\">", "Remote shell image sources are unavailable",
             "Do not construct shell URLs in JavaScript", "Video is unsupported",
             "reload, re-entry, fullscreen transitions, or process restart", "persistent storage",
         ).forEach { assertTrue("Missing guidance: $it", text.contains(it)) }

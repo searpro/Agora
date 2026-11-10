@@ -73,7 +73,7 @@ class GenerationRequestBuilderProviderDisplayTest {
                     assertEquals(subagent, context.subagentToolsEnabled)
                     assertEquals(if (todo) 2 else 0, todoTools.definitions(context).size)
                     assertEquals(if (subagent) 5 else 0, subagentTools.definitions(context).size)
-                    assertTrue(context.shellEnabled)
+                    assertFalse(context.shellEnabled)
                     assertTrue(context.accessPastConversations)
                 }
             }
@@ -123,7 +123,7 @@ class GenerationRequestBuilderProviderDisplayTest {
                     assertEquals(todo, context.todoEnabled)
                     assertFalse(context.subagentToolsEnabled)
                     assertFalse(context.accessPastConversations)
-                    assertTrue(context.shellEnabled)
+                    assertFalse(context.shellEnabled)
                     assertTrue(context.skillReadAccess)
                 }
             }
@@ -141,7 +141,7 @@ class GenerationRequestBuilderProviderDisplayTest {
         for (context in listOf(admitted.context, projected.context)) {
             assertFalse(context.subagentToolsEnabled)
             assertFalse(context.accessPastConversations)
-            assertTrue(context.shellEnabled)
+            assertFalse(context.shellEnabled)
             assertTrue(context.skillReadAccess)
             assertEquals(listOf(fixture.modelId), context.enabledModelIds)
         }

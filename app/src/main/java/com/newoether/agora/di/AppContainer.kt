@@ -465,7 +465,6 @@ class AppContainer(
                 attachmentDirectory = appContext.filesDir,
                 markdownImage = com.newoether.agora.ui.chat.message.ShellMarkdownMedia(
                     context = appContext,
-                    devices = { settingsRepository.shellDevices.value },
                     sandboxEnabled = { settingsRepository.sandboxEnabled.value },
                     sandbox = { sandboxManagerFactory?.takeIf { it.isAvailable() }?.create() },
                 )::previewImage,

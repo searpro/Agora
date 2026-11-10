@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><resources>
-    <string name="app_name">Agora</string>
-    <string name="agora_responded">Agora hat geantwortet</string>
+    <string name="app_name">xLT - LM</string>
+    <string name="agora_responded">xLT - LM hat geantwortet</string>
 
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">Anhang hinzufügen</string>
@@ -19,7 +19,7 @@
     <string name="openai_search">OpenAI-Suche</string>
     <string name="thinking">Nachdenken</string>
     <string name="web_search">Websuche</string>
-    <string name="ask_agora">Frag Agora alles...</string>
+    <string name="ask_agora">Frag xLT - LM alles...</string>
     <string name="send">Senden</string>
 
     <!-- Tool Display -->
@@ -283,9 +283,9 @@
     <string name="play">Abspielen</string>
     <string name="video_preview">Videovorschau</string>
     <string name="total_tokens">Gesamt: %1$d Tokens</string>
-    <string name="welcome_to_agora">Willkommen bei Agora.</string>
+    <string name="welcome_to_agora">Willkommen bei xLT - LM.</string>
     <string name="database_incompatible">Datenbank inkompatibel</string>
-    <string name="database_incompatible_desc">Die Datenbank ist mit dieser Version von Agora nicht kompatibel. Bitte lösche die Datenbank und starte die App neu.</string>
+    <string name="database_incompatible_desc">Die Datenbank ist mit dieser Version von xLT - LM nicht kompatibel. Bitte lösche die Datenbank und starte die App neu.</string>
     <string name="quit">Beenden</string>
     <string name="clear_database">Datenbank löschen</string>
     <string name="generate_title">Titel generieren</string>
@@ -371,10 +371,10 @@
     <string name="about_update_available">Update verfügbar: v%1$s</string>
     <string name="about_up_to_date">Du bist auf dem neuesten Stand (v%1$s)</string>
     <string name="about_checking">Wird geprüft...</string>
-    <string name="about_available_body">Eine neue Version von Agora ist auf GitHub verfügbar.</string>
+    <string name="about_available_body">Eine neue Version von xLT - LM ist auf GitHub verfügbar.</string>
     <string name="about_view_release">Release ansehen</string>
     <string name="about_later">Später</string>
-    <string name="rating_title">Agora bewerten</string>
+    <string name="rating_title">xLT - LM bewerten</string>
     <string name="rating_star">%1$d Stern(e)</string>
     <string name="rating_your_name">Dein Name (optional)</string>
     <string name="rating_your_email">Deine E-Mail (optional)</string>
@@ -407,7 +407,7 @@
 
     <string name="export_failed">Export fehlgeschlagen: %1$s</string>
     <string name="import_preview_title">Daten importieren</string>
-    <string name="import_from">Exportiert am %1$s\nAus Agora v%2$s</string>
+    <string name="import_from">Exportiert am %1$s\nAus xLT - LM v%2$s</string>
     <string name="import_unsupported_backup_version">Das Sicherungsformat v%1$d wird nicht unterstützt. Diese App unterstützt bis v%2$d.</string>
     <string name="import_strategy_merge">Zusammenführen</string>
     <string name="import_strategy_replace">Ersetzen</string>
@@ -500,7 +500,7 @@
     <string name="show_documentation_links_desc">Dokumentations-Schaltfläche auf den Einstellungsseiten anzeigen</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_welcome_title">Willkommen bei Agora</string>
+    <string name="onboarding_welcome_title">Willkommen bei xLT - LM</string>
     <string name="onboarding_welcome_desc">Eine BYOK-App, die dir die Hoheit über deine Daten zurückgibt.</string>
     <string name="onboarding_byok_title">Bring deinen eigenen Schlüssel mit</string>
     <string name="onboarding_byok_desc">Richte deine API-Schlüssel ein oder importiere ein GGUF-Modell, um die Inferenz auf dem Gerät freizuschalten.</string>
@@ -584,7 +584,8 @@
     <string name="shell_confirm_setting">Remote-Shell-Aktionen bestätigen</string>
     <string name="shell_confirm_setting_desc">Nachfragen, bevor der Assistent Befehle ausführt oder Dateien auf Remote-SSH-/Conch-Servern schreibt</string>
     <string name="shell_confirm_notification_channel">Befehlsgenehmigung</string>
-    <string name="shell_confirm_notification_desc">Fragt an, einen Remote-Befehl zu erlauben oder abzulehnen, während Agora im Hintergrund ist</string>
+    <string name="shell_confirm_notification_desc">Fragt an, einen Remote-Befehl zu erlauben oder abzulehnen, während xLT - LM im Hintergrund ist</string>
+
     <string name="ask_user_title">Der Assistent fragt</string>
     <string name="ask_user_send">Senden</string>
     <string name="ask_user_next">Weiter</string>
@@ -594,11 +595,11 @@
     <string name="interaction_expand">Erweitern</string>
     <string name="ask_user_custom_answer">Mit eigenen Worten antworten</string>
     <string name="ask_user_skip">Überspringen</string>
-    <string name="ask_user_notification_channel">Frage von Agora</string>
+    <string name="ask_user_notification_channel">Frage von xLT - LM</string>
     <string name="ask_user_notification_desc">Bittet dich, eine Frage des Assistenten zu beantworten, wenn der Chat nicht geöffnet ist</string>
 
     <!-- Crash reporting -->
-    <string name="crash_title">Agora wurde unerwartet beendet</string>
+    <string name="crash_title">xLT - LM wurde unerwartet beendet</string>
     <string name="crash_message">Das tut uns leid. Du kannst bei der Behebung helfen, indem du einen anonymen Absturzbericht sendest.</string>
     <string name="crash_submit">Bericht senden</string>
     <string name="crash_dismiss">Nicht senden</string>
@@ -687,7 +688,8 @@
     <string name="thinking_segment_display_card">Karte</string>
     <string name="thinking_segment_display_bottom_sheet">Unteres Dialogfeld</string>
     <string name="thinking_segments_title">Denksegmente</string>
-    <string name="context_usage_messages">~%1$s / %2$s Tokens</string>
+    <string name="context_usage_messages">~%1$s / %2$s Tokens</string>
+
     <string name="context_part_system">System-Prompt</string>
     <string name="context_part_tools">Tools</string>
     <string name="context_part_messages">Nachrichten</string>
@@ -751,7 +753,7 @@
     <string name="developer_options_disable_confirm">Ausschalten</string>
     <string name="developer_options_clear_diagnostics">Diagnosesitzung löschen?</string>
     <string name="developer_options_clear_diagnostics_action">Diagnosesitzung löschen</string>
-    <string name="developer_options_export_share_title">Agora-Diagnosepaket teilen</string>
+    <string name="developer_options_export_share_title">xLT - LM-Diagnosepaket teilen</string>
     <string name="developer_options_export_failed">Das Diagnosepaket konnte nicht erstellt werden.</string>
     <string name="responses_api">Responses API</string>
     <string name="responses_api_desc">Den /responses-Endpunkt des Anbieters anstelle von Chat Completions verwenden.</string>

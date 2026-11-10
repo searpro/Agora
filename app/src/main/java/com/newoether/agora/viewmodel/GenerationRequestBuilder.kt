@@ -222,7 +222,7 @@ class GenerationRequestBuilder(
                 overrides.openAiServiceTier ?: settings.openAiServiceTier.value,
             ),
             webSearchEnabled = if (settings.webSearchEnabled.value) (overrides.webSearchEnabled ?: true) else false,
-            shellEnabled = if (settings.shellEnabled.value) (overrides.shellEnabled ?: true) else false,
+            shellEnabled = false,
             lowContextModeEnabled =
                 overrides.lowContextModeEnabled ?: settings.localLowContextModeEnabled.value,
         )
@@ -569,7 +569,7 @@ class GenerationRequestBuilder(
             ragThreshold = settings.ragThreshold.value,
             searchMatchLimit = settings.searchMatchLimit.value,
             searchContextWindow = settings.searchContextWindow.value,
-            webSearchEnabled = effectiveSettings.webSearchEnabled ?: settings.webSearchEnabled.value,
+            webSearchEnabled = false,
             webSearchApiKeys = settings.webSearchApiKeys.value,
             webSearchProvider = settings.webSearchProvider.value,
             webSearchNumResults = settings.webSearchNumResults.value,
@@ -582,7 +582,7 @@ class GenerationRequestBuilder(
             imageGenModel = resolveImageGenModelId(imageGenModel),
             imageGenSize = settings.imageGenSize.value,
             automationToolsEnabled = settings.automationToolsEnabled.value,
-            shellEnabled = effectiveSettings.shellEnabled ?: settings.shellEnabled.value,
+            shellEnabled = false,
             shellDevices = settings.shellDevices.value,
             sandboxEnabled = settings.sandboxEnabled.value,
             sandboxSharedStorageEnabled = settings.sandboxSharedStorageEnabled.value,

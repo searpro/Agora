@@ -5,7 +5,6 @@ import com.newoether.agora.api.util.tokens.bpe.O200kBase
 import com.newoether.agora.data.local.ChatDatabase
 import com.newoether.agora.di.AppContainer
 import com.newoether.agora.diagnostics.DeveloperDiagnostics
-import com.newoether.agora.util.CrashReporter
 import com.newoether.agora.util.DebugLog
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -16,8 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * Application entry point. Installs the crash reporter before any other component runs so
- * that crashes occurring during startup are captured as well.
+ * Application entry point. Initializes process-level services and the database startup gate.
  *
  * Owns the process-scoped AppContainer, but publishes it only after the durable database has
  * passed compatibility checks, supported migrations, and Room schema validation.
@@ -59,7 +57,6 @@ class AgoraApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CrashReporter.install(this)
         com.newoether.agora.phone.PhoneScreenTimeout.process(this).recoverOnAppEvents(this, startupScope)
         // The context indicator counts remote models' text with a real vocabulary once it is in
         // memory. Loading it in its own job keeps the first estimate off the heuristic without

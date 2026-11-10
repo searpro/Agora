@@ -137,6 +137,7 @@ internal val THINKING_SEGMENT_DISPLAY_MODE = stringPreferencesKey("thinking_segm
 internal val AUTO_EXPAND_ACTIVE_GROUP = booleanPreferencesKey("auto_expand_active_group")
 internal val SCHEME_STYLE = stringPreferencesKey("scheme_style")
 internal val FONT_PREFERENCE = stringPreferencesKey("font_preference")
+internal val FONT_SCALE_PERCENT = intPreferencesKey("font_scale_percent")
 internal val CUSTOM_FONT_PATH = stringPreferencesKey("custom_font_path")
 internal val CUSTOM_FONT_NAME = stringPreferencesKey("custom_font_name")
 internal val FIRST_LAUNCH_TIME = longPreferencesKey("first_launch_time")

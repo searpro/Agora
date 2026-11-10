@@ -301,29 +301,11 @@ internal fun ChatDrawerContent(
                                 scope.launch { onRequestClose() }
                             },
                             modifier = Modifier.fillMaxWidth().height(46.dp),
-                            shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp,
-                                bottomStart = 5.dp, bottomEnd = 5.dp)
+                            shape = RoundedCornerShape(24.dp)
                         ) {
                             Icon(Icons.Default.Repeat, null, modifier = Modifier.size(20.dp))
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(stringResource(R.string.tasks), style = ChatType.drawerButton)
-                        }
-
-                        Spacer(modifier = Modifier.height(2.dp))
-
-                        FilledTonalButton(
-                            onClick = {
-                                focusManager.clearFocus()
-                                onOpenRemote()
-                                scope.launch { onRequestClose() }
-                            },
-                            modifier = Modifier.fillMaxWidth().height(46.dp),
-                            shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp,
-                                bottomStart = 24.dp, bottomEnd = 24.dp)
-                        ) {
-                            Icon(Icons.Default.Devices, null, modifier = Modifier.size(20.dp))
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(stringResource(R.string.remote_title), style = ChatType.drawerButton)
                         }
 
                         Spacer(modifier = Modifier.height(10.dp))

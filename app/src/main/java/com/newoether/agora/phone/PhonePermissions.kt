@@ -59,7 +59,7 @@ internal class PhonePermissions(private val context: Context, private val privil
             "accessibility" -> Intent("android.settings.ACCESSIBILITY_DETAILS_SETTINGS")
                 .putExtra(Intent.EXTRA_COMPONENT_NAME, android.content.ComponentName(context, PhoneAccessibilityService::class.java).flattenToString())
             else -> context.packageManager.getLaunchIntentForPackage("moe.shizuku.privileged.api")
-                ?: Intent(Intent.ACTION_VIEW, Uri.parse("https://shizuku.rikka.app/download/"))
+                ?: Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}"))
         }
         runCatching { context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }.getOrElse {
             val fallback = if (key == "accessibility") Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)

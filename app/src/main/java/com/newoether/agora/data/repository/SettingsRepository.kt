@@ -233,6 +233,7 @@ class SettingsRepository(
         publication.hot(settingsManager.autoExpandActiveGroup, true)
     val schemeStyle: StateFlow<String> = publication.hot(settingsManager.schemeStyle, DEFAULT_SCHEME_STYLE)
     val fontPreference: StateFlow<String> = publication.hot(settingsManager.fontPreference, "app_default")
+    val fontScalePercent: StateFlow<Int> = publication.hot(settingsManager.fontScalePercent, 100)
     val customFontPath: StateFlow<String> = publication.hot(settingsManager.customFontPath, "")
     val customFontName: StateFlow<String> = publication.hot(settingsManager.customFontName, "")
     val searchContextWindow: StateFlow<Int> = publication.hot(settingsManager.searchContextWindow, 8)
@@ -696,6 +697,7 @@ class SettingsRepository(
         scope.launch { settingsManager.saveAutoExpandActiveGroup(enabled) }
     fun setSchemeStyle(style: String) = scope.launch { settingsManager.saveSchemeStyle(style) }
     fun setFontPreference(value: String) = scope.launch { settingsManager.saveFontPreference(value) }
+        fun setFontScalePercent(value: Int) = scope.launch { settingsManager.saveFontScalePercent(value) }
     fun setCustomFontPath(value: String) = scope.launch { settingsManager.saveCustomFontPath(value) }
     fun setCustomFontName(value: String) = scope.launch { settingsManager.saveCustomFontName(value) }
     fun setSearchMatchLimit(n: Int) = scope.launch { settingsManager.saveSearchMatchLimit(n) }

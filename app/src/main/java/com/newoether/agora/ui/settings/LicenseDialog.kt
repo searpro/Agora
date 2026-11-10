@@ -1,7 +1,5 @@
 package com.newoether.agora.ui.settings
 
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -22,7 +20,6 @@ import com.newoether.agora.R
 import com.newoether.agora.ui.components.clearFocusOnTap
 
 private const val LICENSE_ASSET = "licenses/LICENSE-GPL-3.0.txt"
-private const val LICENSE_URL = "https://github.com/newo-ether/Agora/blob/master/LICENSE"
 
 /**
  * Shows the license text that ships inside the APK, so a recipient can read it without
@@ -66,12 +63,5 @@ internal fun LicenseDialog(onDismiss: () -> Unit) {
                 Text(stringResource(R.string.ok))
             }
         },
-        dismissButton = {
-            TextButton(onClick = {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(LICENSE_URL)))
-            }) {
-                Text(stringResource(R.string.about_github))
-            }
-        }
     )
 }

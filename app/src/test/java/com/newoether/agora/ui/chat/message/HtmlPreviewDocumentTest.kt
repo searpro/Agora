@@ -9,7 +9,7 @@ import org.junit.Test
 
 class HtmlPreviewDocumentTest {
     @Test
-    fun allowsOnlyStaticHttpsLibrariesAndNumericMapTiles() {
+    fun blocksAllExternalResources() {
         listOf(
             "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.170.0/three.min.js",
             "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js",
@@ -19,7 +19,7 @@ class HtmlPreviewDocumentTest {
             "https://unpkg.com/pkg/font.woff2",
             "https://cdnjs.cloudflare.com/fonts/font.ttf",
             "https://tile.openstreetmap.org/12/1234/2345.png",
-        ).forEach { assertTrue("Rejected approved resource: $it", allowedHtmlResource(it)) }
+        ).forEach { assertFalse("Allowed external resource: $it", allowedHtmlResource(it)) }
 
         listOf(
             "http://cdn.jsdelivr.net/npm/pkg/index.js",

@@ -133,6 +133,7 @@ class MainActivity : ComponentActivity() {
             val schemeStyleName by settingsManager.schemeStyle.collectAsState(initial = com.newoether.agora.data.DEFAULT_SCHEME_STYLE)
             val dynamicColor by settingsManager.dynamicColor.collectAsState(initial = com.newoether.agora.data.DEFAULT_DYNAMIC_COLOR)
             val fontPreference by settingsManager.fontPreference.collectAsState(initial = "app_default")
+            val fontScalePercent by settingsManager.fontScalePercent.collectAsState(initial = 100)
             val customFontPath by settingsManager.customFontPath.collectAsState(initial = "")
             val appReduceMotion by settingsManager.reduceMotion.collectAsState(initial = false)
 
@@ -161,7 +162,8 @@ class MainActivity : ComponentActivity() {
                 schemeStyle = schemeStyle,
                 dynamicColor = dynamicColor,
                 fontPreference = fontPreference,
-                customFontPath = customFontPath
+                customFontPath = customFontPath,
+                fontScalePercent = fontScalePercent,
             ) {
                 ProvideAgoraMotionPolicy(appReduceMotion = appReduceMotion) {
                 val activity = LocalActivity.current
@@ -405,12 +407,6 @@ fun MainNavigation(
         mediaPreviewTarget = MediaPreviewTarget(urls, index)
         topLevelPresentation.present(TopLevelPresentation.MEDIA_PREVIEW)
     }
-    MainApplicationDialogs(
-        viewModel = viewModel,
-        settingsManager = settingsManager,
-        snackbarHostState = snackbarHostState,
-        snackbarVersionState = snackbarVersionState,
-    )
 
     val customProviders by viewModel.settings.customProviders.collectAsState()
 
@@ -493,8 +489,7 @@ fun MainNavigation(
                         showSettings = true
                     },
                     onOpenRemote = {
-                        topLevelPresentation.present(TopLevelPresentation.REMOTE)
-                        showRemote = true
+                        Unit
                     },
                     onOpenTasks = { taskId ->
                         taskToOpen = taskId

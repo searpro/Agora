@@ -4,7 +4,7 @@ Open **Settings → Network Proxy** to route Agora's shared HTTP-client traffic 
 
 ## Scope
 
-The proxy can affect provider requests, model synchronization, web search, MCP over HTTP, update checks, and explicitly submitted rating/crash reports when those paths use the shared client. It does not transparently proxy:
+The proxy can affect configured provider requests and MCP over HTTP when those paths use the shared client. It does not transparently proxy:
 
 - direct SSH connections
 - local llama.cpp inference

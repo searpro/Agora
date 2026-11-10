@@ -85,6 +85,7 @@ fun AgoraTheme(
     amoledEnabled: Boolean = false,
     fontPreference: String = "app_default",
     customFontPath: String = "",
+    fontScalePercent: Int = 100,
     content: @Composable () -> Unit
 ) {
     val systemDark = isSystemInDarkTheme()
@@ -117,7 +118,10 @@ fun AgoraTheme(
     chatCompactWidth = compact
     // Compact windows shrink every sp one step on top of the user's own font scale; dp is untouched.
     val contentDensity = remember(baseDensity, compact) {
-        if (compact) Density(baseDensity.density, baseDensity.fontScale * COMPACT_FONT_SCALE) else baseDensity
+    val userFontScale = fontScalePercent.coerceIn(80, 140) / 100f
+    val contentDensity = remember(baseDensity, compact, userFontScale) {
+        val compactScale = if (compact) COMPACT_FONT_SCALE else 1f
+        Density(baseDensity.density, baseDensity.fontScale * compactScale * userFontScale)
     }
     val typography = remember(fontFamily) { typographyWithFont(fontFamily) }
 

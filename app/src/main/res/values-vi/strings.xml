@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><resources>
-    <string name="app_name">Agora</string>
-    <string name="agora_responded">Agora đã phản hồi</string>
+    <string name="app_name">xLT - LM</string>
+    <string name="agora_responded">xLT - LM đã phản hồi</string>
 
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">Thêm tệp đính kèm</string>
@@ -19,7 +19,7 @@
     <string name="openai_search">Tìm kiếm OpenAI</string>
     <string name="thinking">Đang suy nghĩ</string>
     <string name="web_search">Tìm kiếm Web</string>
-    <string name="ask_agora">Hỏi Agora bất cứ điều gì...</string>
+    <string name="ask_agora">Hỏi xLT - LM bất cứ điều gì...</string>
     <string name="send">Gửi</string>
 
     <!-- Tool Display -->
@@ -286,9 +286,9 @@
     <string name="play">Phát</string>
     <string name="video_preview">Xem trước video</string>
     <string name="total_tokens">Tổng cộng: %1$d token</string>
-    <string name="welcome_to_agora">Chào mừng đến với Agora.</string>
+    <string name="welcome_to_agora">Chào mừng đến với xLT - LM.</string>
     <string name="database_incompatible">Cơ sở dữ liệu không tương thích</string>
-    <string name="database_incompatible_desc">Cơ sở dữ liệu không tương thích với phiên bản Agora này. Vui lòng xóa cơ sở dữ liệu và khởi động lại ứng dụng.</string>
+    <string name="database_incompatible_desc">Cơ sở dữ liệu không tương thích với phiên bản xLT - LM này. Vui lòng xóa cơ sở dữ liệu và khởi động lại ứng dụng.</string>
     <string name="quit">Thoát</string>
     <string name="clear_database">Xóa cơ sở dữ liệu</string>
     <string name="generate_title">Tạo tiêu đề</string>
@@ -374,10 +374,10 @@
     <string name="about_update_available">Có bản cập nhật: v%1$s</string>
     <string name="about_up_to_date">Bạn đang dùng phiên bản mới nhất (v%1$s)</string>
     <string name="about_checking">Đang kiểm tra…</string>
-    <string name="about_available_body">Đã có phiên bản mới của Agora trên GitHub.</string>
+    <string name="about_available_body">Đã có phiên bản mới của xLT - LM trên GitHub.</string>
     <string name="about_view_release">Xem bản phát hành</string>
     <string name="about_later">Để sau</string>
-    <string name="rating_title">Đánh giá Agora</string>
+    <string name="rating_title">Đánh giá xLT - LM</string>
     <string name="rating_star">%1$d sao</string>
     <string name="rating_your_name">Tên của bạn (tùy chọn)</string>
     <string name="rating_your_email">Email của bạn (tùy chọn)</string>
@@ -409,7 +409,7 @@
     <string name="auto_backup_missing_resources">Đã sao lưu xong, nhưng không thể sử dụng %1$d tài nguyên.</string>
     <string name="export_failed">Xuất thất bại: %1$s</string>
     <string name="import_preview_title">Nhập dữ liệu</string>
-    <string name="import_from">Xuất ngày %1$s\nTừ Agora v%2$s</string>
+    <string name="import_from">Xuất ngày %1$s\nTừ xLT - LM v%2$s</string>
     <string name="import_unsupported_backup_version">Định dạng sao lưu v%1$d không được hỗ trợ. Ứng dụng này hỗ trợ đến v%2$d.</string>
     <string name="import_strategy_merge">Gộp</string>
     <string name="import_strategy_replace">Thay thế</string>
@@ -505,7 +505,7 @@
     <string name="show_documentation_links_desc">Hiển thị nút tài liệu hướng dẫn trên các trang cài đặt</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_welcome_title">Chào mừng đến với Agora</string>
+    <string name="onboarding_welcome_title">Chào mừng đến với xLT - LM</string>
     <string name="onboarding_welcome_desc">Một ứng dụng BYOK (Tự mang khóa của bạn) giúp bạn giành lại chủ quyền dữ liệu.</string>
     <string name="onboarding_byok_title">Tự mang khóa của bạn (BYOK)</string>
     <string name="onboarding_byok_desc">Thiết lập khóa API của bạn hoặc nhập mô hình GGUF để mở khóa tính năng suy luận ngay trên thiết bị.</string>
@@ -593,7 +593,8 @@
     <string name="shell_confirm_setting">Xác nhận các hành động shell từ xa</string>
     <string name="shell_confirm_setting_desc">Hỏi trước khi trợ lý chạy các lệnh hoặc ghi tệp trên các máy chủ SSH/Conch từ xa</string>
     <string name="shell_confirm_notification_channel">Phê duyệt lệnh</string>
-    <string name="shell_confirm_notification_desc">Yêu cầu cho phép hoặc từ chối lệnh từ xa khi Agora chạy ngầm</string>
+    <string name="shell_confirm_notification_desc">Yêu cầu cho phép hoặc từ chối lệnh từ xa khi xLT - LM chạy ngầm</string>
+
     <string name="ask_user_title">Trợ lý đang hỏi</string>
     <string name="ask_user_send">Gửi</string>
     <string name="ask_user_next">Tiếp</string>
@@ -603,11 +604,11 @@
     <string name="interaction_expand">Mở rộng</string>
     <string name="ask_user_custom_answer">Trả lời bằng lời của bạn</string>
     <string name="ask_user_skip">Bỏ qua</string>
-    <string name="ask_user_notification_channel">Câu hỏi từ Agora</string>
+    <string name="ask_user_notification_channel">Câu hỏi từ xLT - LM</string>
     <string name="ask_user_notification_desc">Yêu cầu bạn trả lời câu hỏi của trợ lý khi màn hình trò chuyện không mở</string>
 
     <!-- Crash reporting -->
-    <string name="crash_title">Agora đã thoát đột ngột</string>
+    <string name="crash_title">xLT - LM đã thoát đột ngột</string>
     <string name="crash_message">Rất tiếc vì sự cố này. Bạn có thể giúp khắc phục lỗi bằng cách gửi một báo cáo sự cố ẩn danh.</string>
     <string name="crash_submit">Gửi báo cáo</string>
     <string name="crash_dismiss">Không gửi</string>
@@ -693,7 +694,8 @@
     <string name="thinking_segment_display_card">Thẻ</string>
     <string name="thinking_segment_display_bottom_sheet">Bảng dưới</string>
     <string name="thinking_segments_title">Phân đoạn suy luận</string>
-    <string name="context_usage_messages">~%1$s / %2$s token</string>
+    <string name="context_usage_messages">~%1$s / %2$s token</string>
+
     <string name="context_part_system">Lời nhắc hệ thống</string>
     <string name="context_part_tools">Công cụ</string>
     <string name="context_part_messages">Tin nhắn</string>
@@ -757,7 +759,7 @@
     <string name="developer_options_disable_confirm">Tắt</string>
     <string name="developer_options_clear_diagnostics">Xóa phiên chẩn đoán?</string>
     <string name="developer_options_clear_diagnostics_action">Xóa phiên chẩn đoán</string>
-    <string name="developer_options_export_share_title">Chia sẻ gói chẩn đoán Agora</string>
+    <string name="developer_options_export_share_title">Chia sẻ gói chẩn đoán xLT - LM</string>
     <string name="developer_options_export_failed">Không thể tạo gói chẩn đoán.</string>
     <string name="responses_api">Responses API</string>
     <string name="responses_api_desc">Dùng điểm cuối /responses của nhà cung cấp thay cho Chat Completions.</string>

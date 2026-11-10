@@ -1,0 +1,4 @@
+* Network requests limited to configured model providers and MCP servers
+* Added selectable app font size while preserving palettes and light/dark mode
+* Rebranded app as xLT - LM
+* Disabled standalone search, update checks, crash reporting and remote preview fetching

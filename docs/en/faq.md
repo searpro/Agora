@@ -2,7 +2,7 @@
 
 ## Does Agora operate a chat relay?
 
-No. Conversations are stored locally and chat requests go from the device to the provider or endpoint you configure. Agora does make other optional/direct network requests—for example update checks, explicitly submitted ratings or crash reports, web search, MCP, embeddings, image services, and remote shell. See [Privacy & Security](privacy.md).
+No. Conversations are stored locally. App network requests go only to the model provider(s) and MCP servers you configure. Standalone web search, update checks, crash reporting, feedback submission, remote shell, and remote preview fetching are disabled. See [Privacy & Security](privacy.md).
 
 ## Where are API keys stored?
 

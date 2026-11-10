@@ -647,7 +647,7 @@ class HtmlPreviewCodeContentTest {
             MaterialTheme {
                 val assets = rememberChatMarkdownAssets(MaterialTheme.colorScheme.onSurface)
                 val media = remember {
-                    ShellMarkdownMedia(context, devices = { emptyList() }, sandboxEnabled = { false }, sandbox = { null })
+                    ShellMarkdownMedia(context, sandboxEnabled = { false }, sandbox = { null })
                 }
                 CompositionLocalProvider(
                     LocalMarkdownColors provides assets.renderContext.colors,

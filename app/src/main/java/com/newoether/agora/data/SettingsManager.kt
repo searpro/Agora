@@ -136,7 +136,7 @@ class SettingsManager(private val context: Context) {
     val activeEmbeddingModelId: Flow<String> = context.dataStore.data.map { it[ACTIVE_EMBEDDING_MODEL_ID] ?: "" }
 
     val appLanguage: Flow<String> = context.dataStore.data.map { it[APP_LANGUAGE] ?: "system" }
-    val webSearchEnabled: Flow<Boolean> = context.dataStore.data.map { it[WEB_SEARCH_ENABLED] ?: true }
+    val webSearchEnabled: Flow<Boolean> = context.dataStore.data.map { false }
     val webSearchProvider: Flow<String> = context.dataStore.data.map {
         normalizeWebSearchProvider(it[WEB_SEARCH_PROVIDER])
     }
@@ -182,7 +182,7 @@ class SettingsManager(private val context: Context) {
             (preferences[DEBUG_MODEL_ENABLED] ?: false)
     }
 
-    val shellEnabled: Flow<Boolean> = context.dataStore.data.map { it[SHELL_ENABLED] ?: true }
+    val shellEnabled: Flow<Boolean> = context.dataStore.data.map { false }
     val automationToolsEnabled: Flow<Boolean> = context.dataStore.data.map { it[AUTOMATION_TOOLS_ENABLED] ?: false }
     val exactExecutionEnabled: Flow<Boolean> = context.dataStore.data.map { it[EXACT_EXECUTION_ENABLED] ?: false }
     val automationWakeLockEnabled: Flow<Boolean> =
@@ -253,6 +253,9 @@ class SettingsManager(private val context: Context) {
     val autoExpandActiveGroup: Flow<Boolean> = context.dataStore.data.map { it[AUTO_EXPAND_ACTIVE_GROUP] ?: true }
     val schemeStyle: Flow<String> = context.dataStore.data.map { it[SCHEME_STYLE] ?: DEFAULT_SCHEME_STYLE }
     val fontPreference: Flow<String> = context.dataStore.data.map { it[FONT_PREFERENCE] ?: "app_default" }
+    val fontScalePercent: Flow<Int> = context.dataStore.data.map {
+        (it[FONT_SCALE_PERCENT] ?: 100).coerceIn(80, 140)
+    }
     val customFontPath: Flow<String> = context.dataStore.data.map { it[CUSTOM_FONT_PATH] ?: "" }
     val customFontName: Flow<String> = context.dataStore.data.map { it[CUSTOM_FONT_NAME] ?: "" }
     val firstLaunchTime: Flow<Long?> = context.dataStore.data.map { it[FIRST_LAUNCH_TIME] }
@@ -430,7 +433,7 @@ class SettingsManager(private val context: Context) {
         context.dataStore.edit { it[APP_LANGUAGE] = language }
     }
     suspend fun saveWebSearchEnabled(enabled: Boolean) {
-        context.dataStore.edit { it[WEB_SEARCH_ENABLED] = enabled }
+        context.dataStore.edit { it[WEB_SEARCH_ENABLED] = false }
     }
     suspend fun saveWebSearchProvider(provider: String) {
         context.dataStore.edit { it[WEB_SEARCH_PROVIDER] = normalizeWebSearchProvider(provider) }
@@ -626,7 +629,7 @@ class SettingsManager(private val context: Context) {
         }
     }
     suspend fun saveShellEnabled(enabled: Boolean) {
-        context.dataStore.edit { it[SHELL_ENABLED] = enabled }
+        context.dataStore.edit { it[SHELL_ENABLED] = false }
     }
     suspend fun saveAutomationToolsEnabled(enabled: Boolean) {
         context.dataStore.edit { it[AUTOMATION_TOOLS_ENABLED] = enabled }
@@ -736,6 +739,9 @@ class SettingsManager(private val context: Context) {
     }
     suspend fun saveFontPreference(value: String) {
         context.dataStore.edit { it[FONT_PREFERENCE] = value }
+    }
+    suspend fun saveFontScalePercent(value: Int) {
+        context.dataStore.edit { it[FONT_SCALE_PERCENT] = value.coerceIn(80, 140) }
     }
     suspend fun saveCustomFontPath(value: String) {
         context.dataStore.edit { it[CUSTOM_FONT_PATH] = value }

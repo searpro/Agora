@@ -10,17 +10,12 @@ Deleting app data or uninstalling the app removes app-managed data unless Androi
 
 ## When data leaves the device
 
-Only features you use create their corresponding traffic:
+App network requests are limited to the model provider(s) and MCP servers you configure:
 
-- chat, title, transcription, image, and embedding requests go to their selected model/provider
-- web queries go to the selected search provider
-- MCP calls go to enabled MCP servers
-- Conch or SSH operations go to configured devices
-- update checks retrieve release metadata at app startup, at most once per day
-- the optional rating form sends only the rating, name, email, and comment you submit to `https://newoether.com/api/rating`
-- after a crash, one report is stored locally; on next launch you may explicitly send its stack trace, app/Android version, device manufacturer/model, timestamp, and bounded diagnostic tags to `https://newoether.com/crash`
+- chat, title, transcription, image-generation, embedding, and provider-native search requests go to their selected model provider or configured endpoint
+- MCP calls go only to enabled MCP servers
 
-Crash reports are never uploaded automatically and do not contain conversation text, credentials, or device identifiers. Agora has no general analytics/telemetry path.
+Agora does not capture crash reports, check for updates, submit ratings, run standalone web search, fetch remote preview assets, or contact Agora-owned analytics/services. Provider and MCP operators have their own privacy and retention policies.
 
 ## Backups and secrets
 
@@ -28,6 +23,6 @@ A `.agora` export is a ZIP archive. If you explicitly include API keys/secrets, 
 
 ## Proxy and transport
 
-The configured network proxy covers shared HTTP-client traffic, not direct SSH, on-device inference, or sandbox process networking. TLS and endpoint trust still matter. Conch application-layer encryption requires an API key; blank-key Conch uses plain JSON and relies on HTTPS for transport confidentiality.
+The configured network proxy covers provider and MCP HTTP traffic, not on-device inference or sandbox process networking. TLS and endpoint trust still matter.
 
 Review the endpoint URLs, server certificates, provider terms, and tool permissions before sending sensitive content.

@@ -106,6 +106,7 @@ object ExportExtraSettings {
         }
         obj["schemeStyle"]?.jsonPrimitive?.contentOrNull?.let { sm.saveSchemeStyle(it) }
         obj["fontPreference"]?.jsonPrimitive?.contentOrNull?.let { sm.saveFontPreference(it) }
+        obj["fontScalePercent"]?.jsonPrimitive?.int?.let { sm.saveFontScalePercent(it) }
         obj["autoUpdateCheck"]?.jsonPrimitive?.boolean?.let { sm.saveAutoUpdateCheck(it) }
         obj["automationToolsEnabled"]?.jsonPrimitive?.boolean?.let { sm.saveAutomationToolsEnabled(it) }
         obj["exactExecutionEnabled"]?.jsonPrimitive?.boolean?.let { sm.saveExactExecutionEnabled(it) }

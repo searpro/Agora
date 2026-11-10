@@ -63,12 +63,11 @@ fun SettingsWebSearchPage(viewModel: ChatViewModel, onBack: () -> Unit) {
                     add {
                         SettingsItem(
                             headlineContent = { Text(stringResource(R.string.web_search_enable)) },
-                            supportingContent = { Text(stringResource(R.string.web_search_enable_desc)) },
+                            supportingContent = { Text(stringResource(R.string.network_tools_disabled_desc)) },
                             leadingContent = { Icon(Icons.Default.Language, null, tint = MaterialTheme.colorScheme.primary) },
                             trailingContent = {
-                                Switch(checked = webSearchEnabled, onCheckedChange = { viewModel.settings.setWebSearchEnabled(it) })
+                                Switch(checked = false, onCheckedChange = null, enabled = false)
                             },
-                            modifier = Modifier.clickable { viewModel.settings.setWebSearchEnabled(!webSearchEnabled) }
                         )
                     }
 

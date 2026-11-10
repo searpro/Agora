@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 import com.newoether.agora.R
 import com.newoether.agora.model.ToolCallDisplayModes
 import com.newoether.agora.model.ThinkingSegmentDisplayModes
@@ -75,6 +76,8 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
     val fontPreference by viewModel.settings.fontPreference.collectAsState()
     val customFontPath by viewModel.settings.customFontPath.collectAsState()
     val customFontName by viewModel.settings.customFontName.collectAsState()
+        val fontScalePercent by viewModel.settings.fontScalePercent.collectAsState()
+        var fontScaleDraft by remember(fontScalePercent) { mutableFloatStateOf(fontScalePercent.toFloat()) }
     val showDocFab by viewModel.settings.showDocumentationFab.collectAsState()
     val context = androidx.compose.ui.platform.LocalContext.current
     val scope = rememberCoroutineScope()
@@ -778,6 +781,38 @@ fun SettingsAppearancePage(viewModel: ChatViewModel, onBack: () -> Unit) {
                             }
                         }
                     }
+                )
+                SettingsGroup(
+                    title = stringResource(R.string.font_size_title),
+                    items = listOf({
+                        Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Text(stringResource(R.string.font_size_label), style = MaterialTheme.typography.titleSmall)
+                                Text("${fontScaleDraft.roundToInt()}%", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                            }
+                            Slider(
+                                value = fontScaleDraft,
+                                onValueChange = { fontScaleDraft = it },
+                                onValueChangeFinished = {
+                                    viewModel.settings.setFontScalePercent(fontScaleDraft.roundToInt())
+                                },
+                                valueRange = 80f..140f,
+                                steps = 11,
+                            )
+                            Text(
+                                stringResource(R.string.font_size_preview),
+                                style = MaterialTheme.typography.bodyMedium.copy(
+                                    fontSize = MaterialTheme.typography.bodyMedium.fontSize *
+                                        (fontScaleDraft / fontScalePercent.coerceAtLeast(1)),
+                                ),
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }),
                 )
             }
             if (showDocFab) { Spacer(modifier = Modifier.height(80.dp)) }

@@ -4,12 +4,10 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.newoether.agora.data.ShellDeviceConfig
 import com.newoether.agora.model.MarkdownImage
 import com.newoether.agora.model.ToolImageAttachment
 import com.newoether.agora.remote.RemoteImageCache
 import com.newoether.agora.sandbox.SandboxManager
-import com.newoether.agora.tool.ConchBackend
 import com.newoether.agora.tool.ToolImageStore
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -20,13 +18,12 @@ import java.io.IOException
 /**
  * Display-only loader for `shell://` Markdown images in Agora-owned conversations.
  *
- * Bytes come from the configured device (Local Sandbox file or Conch `/file/image`), are inspected
+ * Bytes come from a Local Sandbox file and are inspected
  * without model preparation, and land in a bounded disposable cache. Nothing here enters Provider
  * context, Room, or the message graph. Loading is demand-driven by the rendered image slot.
  */
 internal class ShellMarkdownMedia(
     private val context: Context,
-    private val devices: () -> List<ShellDeviceConfig>,
     private val sandboxEnabled: () -> Boolean,
     private val sandbox: () -> SandboxManager?,
 ) {
@@ -95,12 +92,7 @@ internal class ShellMarkdownMedia(
                 ?: throw IOException("Unsupported image type")
             return file.inputStream().use { store.persistStream(it, mime, "markdown") }
         }
-        val device = devices().firstOrNull { it.name.equals(target.server, ignoreCase = true) }
-            ?: throw IOException("Unknown shell device")
-        if (device.type == "ssh") throw IOException("SSH devices do not serve images")
-        val result = ConchBackend(device).viewImage(target.path)
-        result.error?.let { throw IOException(it) }
-        return store.persistBase64(result.data, result.mimeType, "markdown")
+        throw IOException("Remote shell images are disabled")
     }
 }
 

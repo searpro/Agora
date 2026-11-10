@@ -168,6 +168,7 @@ internal object PortableSettingsArchive {
         put("thinkingSegmentDisplayMode", JsonPrimitive(sm.thinkingSegmentDisplayMode.first()))
         put("autoExpandActiveGroup", JsonPrimitive(sm.autoExpandActiveGroup.first()))
         put("schemeStyle", JsonPrimitive(sm.schemeStyle.first()))
+        put("fontScalePercent", JsonPrimitive(sm.fontScalePercent.first()))
 
         val fontPreference = sm.fontPreference.first()
         put(
@@ -541,6 +542,7 @@ internal object PortableSettingsArchive {
         obj.string("thinkingSegmentDisplayMode")?.let { sm.saveThinkingSegmentDisplayMode(it) }
         obj.boolean("autoExpandActiveGroup")?.let { sm.saveAutoExpandActiveGroup(it) }
         obj.string("schemeStyle")?.let { sm.saveSchemeStyle(it) }
+        obj.int("fontScalePercent")?.let { sm.saveFontScalePercent(it) }
 
         if (obj.containsKey("fontPreference") || replace) {
             val requestedPreference = obj.string("fontPreference") ?: "app_default"

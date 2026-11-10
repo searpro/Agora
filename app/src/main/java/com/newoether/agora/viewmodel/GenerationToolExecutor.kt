@@ -23,7 +23,6 @@ import com.newoether.agora.tool.ToolExecutionResult
 import com.newoether.agora.tool.ToolImageStore
 import com.newoether.agora.tool.ToolPresentationMetadata
 import com.newoether.agora.tool.ToolProvider
-import com.newoether.agora.tool.WebSearchToolProvider
 import com.newoether.agora.util.Constants
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -105,7 +104,6 @@ internal class GenerationToolExecutor private constructor(
                     com.newoether.agora.tool.TodoToolProvider(conversations),
                     MemoryToolProvider(memoryManager),
                     SkillToolProvider(skillManager),
-                    WebSearchToolProvider(),
                     RagToolProvider(conversations, generatingConversationIds),
                     imageGenProvider,
                     shellProvider,
@@ -126,9 +124,6 @@ internal class GenerationToolExecutor private constructor(
 
     fun memoryDefinitions(context: GenerationContext): List<ToolDefinition> =
         providers.filterIsInstance<MemoryToolProvider>().flatMap { it.definitions(context) }
-
-    fun webSearchDefinitions(context: GenerationContext): List<ToolDefinition> =
-        providers.filterIsInstance<WebSearchToolProvider>().flatMap { it.definitions(context) }
 
     fun ragDefinitions(context: GenerationContext): List<ToolDefinition> =
         providers.filterIsInstance<RagToolProvider>().flatMap { it.definitions(context) }

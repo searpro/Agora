@@ -31,8 +31,6 @@ import com.newoether.agora.sandbox.SandboxManagerFactory
 import com.newoether.agora.service.AgoraForegroundService
 import com.newoether.agora.service.AppForegroundTracker
 import com.newoether.agora.util.SnackbarEvent
-import com.newoether.agora.util.UpdateChecker
-import com.newoether.agora.util.UpdateInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -92,7 +90,6 @@ class ChatViewModel(
     /** Display-only `shell://` Markdown images for native chat, read from the live device settings. */
     internal val shellMarkdownMedia = com.newoether.agora.ui.chat.message.ShellMarkdownMedia(
         context = appContext,
-        devices = { settingsRepository.shellDevices.value },
         sandboxEnabled = { settingsRepository.sandboxEnabled.value },
         sandbox = { sandboxFactory?.takeIf { it.isAvailable() }?.create() },
     )
@@ -180,11 +177,6 @@ class ChatViewModel(
     )
     private val startupMaintenance by lazy {
         StartupMaintenanceCoordinator(
-            settings = settings,
-            scope = viewModelScope,
-            currentVersion = ::getCurrentVersion,
-            checkUpdate = UpdateChecker::check,
-            onUpdateFound = { _updateDialogData.value = it },
             startAutoBackup = dataControl::startAutoBackup,
             startSemanticIndex = ragManager::startPostList,
         )
@@ -453,11 +445,6 @@ class ChatViewModel(
     )
     val firstMessageCommitted = _firstMessageCommitted.asSharedFlow()
 
-    private val _updateDialogData = MutableStateFlow<UpdateInfo?>(null)
-    val updateDialogData: StateFlow<UpdateInfo?> = _updateDialogData.asStateFlow()
-    fun dismissUpdateDialog() { _updateDialogData.value = null }
-    fun showUpdateDialog(info: UpdateInfo) { _updateDialogData.value = info }
-
     /** PDF / text-file preview state shared by the existing UI consumers. */
     val mediaPreview = MediaPreviewState()
 
@@ -600,14 +587,6 @@ class ChatViewModel(
         conversationUi.start()
     }
 
-    fun getCurrentVersion(): String {
-        return try { appContext.packageManager.getPackageInfo(appContext.packageName, 0).versionName ?: "?" } catch (_: Exception) { "?" }
-    }
-    suspend fun checkForUpdates(): UpdateInfo? {
-        return withContext(Dispatchers.IO) {
-            UpdateChecker.check(getCurrentVersion())
-        }
-    }
     suspend fun semanticSearch(query: String, limit: Int = 20) =
         semanticSearchService.search(query, limit)
     suspend fun searchMessages(query: String, limit: Int = 20) = convRepo.searchMessages(query, limit)

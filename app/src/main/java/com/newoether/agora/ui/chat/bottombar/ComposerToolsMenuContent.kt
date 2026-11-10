@@ -220,48 +220,6 @@ internal fun ComposerToolsMenuContent(
             onCheckedChange = onOpenAiWebSearchToggle,
         )
     }
-    if (showWebSearch) {
-        AgoraDropdownMenuItem(
-            text = {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Default.Language, null, modifier = Modifier.size(CHAT_DROPDOWN_MENU_ICON_SIZE_DP.dp))
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Text(stringResource(R.string.web_search))
-                }
-            },
-            trailingIcon = {
-                Switch(
-                    checked = webSearchEnabled,
-                    onCheckedChange = { onWebSearchToggle(it) },
-                    enabled = capabilityControlsEnabled,
-                    modifier = Modifier.scale(0.7f)
-                )
-            },
-            enabled = capabilityControlsEnabled,
-            onClick = { onWebSearchToggle(!webSearchEnabled) }
-        )
-    }
-    if (showShell) {
-        AgoraDropdownMenuItem(
-            text = {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Default.Terminal, null, modifier = Modifier.size(CHAT_DROPDOWN_MENU_ICON_SIZE_DP.dp))
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Text(stringResource(R.string.shell_title))
-                }
-            },
-            trailingIcon = {
-                Switch(
-                    checked = shellEnabled,
-                    onCheckedChange = { onShellToggle(it) },
-                    enabled = capabilityControlsEnabled,
-                    modifier = Modifier.scale(0.7f)
-                )
-            },
-            enabled = capabilityControlsEnabled,
-            onClick = { onShellToggle(!shellEnabled) }
-        )
-    }
     AgoraDropdownMenuItem(
         text = {
             Row(verticalAlignment = Alignment.CenterVertically) {
