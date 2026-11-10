@@ -117,7 +117,6 @@ fun AgoraTheme(
     val compact = windowWidthDp > 0f && windowWidthDp < CHAT_COMPACT_WIDTH_DP
     chatCompactWidth = compact
     // Compact windows shrink every sp one step on top of the user's own font scale; dp is untouched.
-    val contentDensity = remember(baseDensity, compact) {
     val userFontScale = fontScalePercent.coerceIn(80, 140) / 100f
     val contentDensity = remember(baseDensity, compact, userFontScale) {
         val compactScale = if (compact) COMPACT_FONT_SCALE else 1f

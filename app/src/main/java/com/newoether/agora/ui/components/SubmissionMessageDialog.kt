@@ -30,7 +30,7 @@ fun SubmissionMessageDialog(message: SubmissionMessage, onDismiss: () -> Unit) {
         },
         confirmButton = {
             TextButton(onClick = onDismiss) {
-                Text(message.buttonText ?: stringResource(R.string.ok))
+                Text(stringResource(R.string.ok))
             }
         },
     )
