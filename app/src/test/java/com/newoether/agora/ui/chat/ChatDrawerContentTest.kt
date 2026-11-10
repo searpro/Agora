@@ -55,6 +55,7 @@ class ChatDrawerContentTest {
     fun headerSearchFillsTheRowAndClearDoesNotCollapseButReturnResetsQuery() {
         val resources = ApplicationProvider.getApplicationContext<Application>().resources
         val hint = resources.getString(R.string.search_hint)
+        val appName = resources.getString(R.string.app_name)
         var query by mutableStateOf("")
         var reduced by mutableStateOf(false)
         var width by mutableStateOf(328.dp)
@@ -65,12 +66,12 @@ class ChatDrawerContentTest {
                 }
             }
         }
-        compose.onNodeWithText("Agora").assertIsDisplayed()
+        compose.onNodeWithText(appName).assertIsDisplayed()
         compose.onNode(hasSetTextAction()).assertDoesNotExist()
         compose.onNodeWithContentDescription(hint).assertWidthIsEqualTo(56.dp).assertHeightIsEqualTo(56.dp)
             .performClick()
         compose.onNode(hasSetTextAction()).assertIsFocused().performTextInput("alpha")
-        compose.onNodeWithText("Agora").assertDoesNotExist()
+        compose.onNodeWithText(appName).assertDoesNotExist()
         val root = compose.onRoot().fetchSemanticsNode().boundsInRoot
         val capsule = compose.onNodeWithTag("DrawerHeaderSearch").assertHeightIsEqualTo(56.dp)
             .fetchSemanticsNode().boundsInRoot
@@ -85,11 +86,11 @@ class ChatDrawerContentTest {
         compose.onNodeWithContentDescription(resources.getString(R.string.back)).performClick()
         compose.runOnIdle { assertEquals("", query) }
         compose.onNode(hasSetTextAction()).assertDoesNotExist()
-        compose.onNodeWithText("Agora").assertIsDisplayed()
+        compose.onNodeWithText(appName).assertIsDisplayed()
         compose.runOnIdle { reduced = true; width = 248.dp }
         compose.onNodeWithContentDescription(hint).performClick()
         compose.onNode(hasSetTextAction()).assertIsFocused().performTextInput("narrow")
-        compose.onNodeWithText("Agora").assertDoesNotExist()
+        compose.onNodeWithText(appName).assertDoesNotExist()
         val narrow = compose.onNodeWithTag("DrawerHeaderSearch").fetchSemanticsNode().boundsInRoot
         assertEquals(compose.onRoot().fetchSemanticsNode().boundsInRoot.width, narrow.width, 1f)
         compose.onNodeWithContentDescription(resources.getString(R.string.back)).performClick()
@@ -141,6 +142,7 @@ class ChatDrawerContentTest {
     @Test
     fun headerSearchFadesTitleAndResetsOnlyWhenDrawerIsFullyClosed() {
         val resources = ApplicationProvider.getApplicationContext<Application>().resources
+        val appName = resources.getString(R.string.app_name)
         var query by mutableStateOf("")
         var visible by mutableStateOf(true)
         var searching by mutableStateOf(false)
@@ -157,9 +159,9 @@ class ChatDrawerContentTest {
         compose.waitForIdle()
         compose.mainClock.advanceTimeByFrame()
         compose.mainClock.advanceTimeBy(80)
-        compose.onNodeWithText("Agora").assertExists()
+        compose.onNodeWithText(appName).assertExists()
         compose.mainClock.advanceTimeBy(450)
-        compose.onNodeWithText("Agora").assertDoesNotExist()
+        compose.onNodeWithText(appName).assertDoesNotExist()
         compose.mainClock.autoAdvance = true
         compose.onNode(hasSetTextAction()).performTextInput("retained")
         val capsule = compose.onNodeWithTag("DrawerHeaderSearch").fetchSemanticsNode().boundsInRoot
@@ -173,7 +175,7 @@ class ChatDrawerContentTest {
         compose.runOnIdle { visible = false }
         compose.onNode(hasSetTextAction()).assertDoesNotExist()
         compose.runOnIdle { assertEquals("", query) }
-        compose.onNodeWithText("Agora").assertIsDisplayed()
+        compose.onNodeWithText(appName).assertIsDisplayed()
         compose.runOnIdle { visible = true }
         compose.onNode(hasSetTextAction()).assertDoesNotExist()
         compose.onNodeWithContentDescription(resources.getString(R.string.search_hint)).performClick()
@@ -239,7 +241,7 @@ class ChatDrawerContentTest {
     }
 
     @Test
-    fun tasksAndRemoteUse46DpAndKeepJoinedGeometry() {
+    fun tasksUses46DpAndKeepsCurrentDrawerGeometry() {
         val root = generateSequence(File(requireNotNull(System.getProperty("user.dir"))).absoluteFile) {
             it.parentFile
         }.first { File(it, "app/src/main/java").isDirectory }
@@ -247,16 +249,13 @@ class ChatDrawerContentTest {
             "app/src/main/java/com/newoether/agora/ui/chat/ChatDrawerContent.kt").readText()
         val group = source.substringAfter("Column(modifier = Modifier.fillMaxSize()) {")
             .substringBefore("val newChatDisabled")
-        assertEquals(2, Regex("""\.height\(46\.dp\)""").findAll(group).count())
+        assertEquals(1, Regex("""\.height\(46\.dp\)""").findAll(group).count())
         assertFalse(group.contains("height(52.dp)"))
-        assertTrue(group.contains("Spacer(modifier = Modifier.height(2.dp))"))
-        assertTrue(group.contains("topStart = 24.dp, topEnd = 24.dp"))
-        assertTrue(group.contains("bottomStart = 5.dp, bottomEnd = 5.dp"))
-        assertTrue(group.contains("topStart = 5.dp, topEnd = 5.dp"))
-        assertTrue(group.contains("bottomStart = 24.dp, bottomEnd = 24.dp"))
-        assertEquals(2, Regex("""focusManager\.clearFocus\(\)""").findAll(group).count())
-        assertEquals(2, Regex("""scope\.launch \{ onRequestClose\(\) \}""").findAll(group).count())
-        assertTrue(group.indexOf("onOpenTasks()") < group.indexOf("onOpenRemote()"))
+        assertTrue(group.contains("Spacer(modifier = Modifier.height(10.dp))"))
+        assertTrue(group.contains("onOpenTasks()"))
+        assertFalse(group.contains("onOpenRemote()"))
+        assertEquals(1, Regex("""focusManager\.clearFocus\(\)""").findAll(group).count())
+        assertEquals(1, Regex("""scope\.launch \{ onRequestClose\(\) \}""").findAll(group).count())
     }
     @Test
     fun conversationSelectionColorsCrossfadeWithoutChangingRowGeometry() {

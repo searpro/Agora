@@ -402,7 +402,7 @@ class GenerationRequestBuilderProviderDisplayTest {
         // A conversation without saved settings uses the app defaults, never a client's New Chat page.
         val unsaved = builder.buildEffectiveConversationSettings("unsaved-conversation")
         assertEquals(true, unsaved.webSearchEnabled)
-        assertEquals(true, unsaved.shellEnabled)
+        assertEquals(false, unsaved.shellEnabled)
         assertEquals(true, unsaved.lowContextModeEnabled)
     }
 

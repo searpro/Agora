@@ -2,6 +2,11 @@
     <string name="app_name">xLT - LM</string>
     <string name="agora_responded">xLT - LM respondió</string>
 
+    <string name="font_size_title">Tamaño del texto</string>
+    <string name="font_size_label">Tamaño del texto de la aplicación</string>
+    <string name="font_size_preview">El texto de vista previa se adapta a tu selección.</string>
+    <string name="network_tools_disabled_desc">El acceso a la red externa se limita al proveedor de modelos configurado y a los servidores MCP.</string>
+
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">Añadir adjunto</string>
     <string name="camera">Cámara</string>

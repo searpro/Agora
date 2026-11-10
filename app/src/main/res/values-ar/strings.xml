@@ -2,6 +2,11 @@
     <string name="app_name">xLT - LM</string>
     <string name="agora_responded">ردّ xLT - LM</string>
 
+    <string name="font_size_title">حجم الخط</string>
+    <string name="font_size_label">حجم نص التطبيق</string>
+    <string name="font_size_preview">يتكيف نص المعاينة مع اختيارك.</string>
+    <string name="network_tools_disabled_desc">يقتصر الوصول إلى الشبكة الخارجية على موفّر النموذج المُعدّ وخوادم MCP.</string>
+
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">إضافة مرفق</string>
     <string name="camera">الكاميرا</string>

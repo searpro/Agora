@@ -2,6 +2,11 @@
     <string name="app_name">xLT - LM</string>
     <string name="agora_responded">xLT - LM 已回覆</string>
 
+    <string name="font_size_title">字體大小</string>
+    <string name="font_size_label">應用程式文字大小</string>
+    <string name="font_size_preview">預覽文字會依照你的選擇調整。</string>
+    <string name="network_tools_disabled_desc">外部網路存取僅限於已設定的模型供應商和 MCP 伺服器。</string>
+
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">新增附件</string>
     <string name="camera">相機</string>

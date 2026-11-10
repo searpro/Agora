@@ -36,7 +36,7 @@ class HtmlPreviewGuidanceTest {
     fun guidanceRequiresSelfContainedContentAndResettableState() {
         val text = HtmlPreviewGuidance.text
         listOf(
-            "`html-preview`", "closing fence", "`html`", "manual Run", "inline HTML, CSS, JavaScript, and data",
+            "`html-preview`", "closing fence", "`html`", "manual Run", "inline HTML, CSS, JavaScript, fonts, and data",
             "fully self-contained", "Do not reference external URLs, CDNs, map tiles, or remote assets",
             "Do not use fetch, XMLHttpRequest, WebSockets, EventSource, or any other network access",
             "<img src=\"shell://Local%20Sandbox/absolute/path.png\">", "Remote shell image sources are unavailable",

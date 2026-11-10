@@ -2,6 +2,11 @@
     <string name="app_name">xLT - LM</string>
     <string name="agora_responded">xLT - LM a répondu</string>
 
+    <string name="font_size_title">Taille du texte</string>
+    <string name="font_size_label">Taille du texte de l’application</string>
+    <string name="font_size_preview">Le texte d’aperçu s’adapte à votre sélection.</string>
+    <string name="network_tools_disabled_desc">L’accès au réseau externe est limité au fournisseur de modèles configuré et aux serveurs MCP.</string>
+
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">Ajouter une pièce jointe</string>
     <string name="camera">Appareil photo</string>

@@ -264,6 +264,7 @@ class SettingsSubagentPageTest {
         every { settings.fontPreference } returns MutableStateFlow("default")
         every { settings.customFontPath } returns MutableStateFlow("")
         every { settings.customFontName } returns MutableStateFlow("")
+        every { settings.fontScalePercent } returns MutableStateFlow(100)
         every { settings.showDocumentationFab } returns MutableStateFlow(false)
         appearanceViewModel = viewModel
         show()

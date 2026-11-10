@@ -2,6 +2,11 @@
     <string name="app_name">xLT - LM</string>
     <string name="agora_responded">xLT - LM が応答しました</string>
 
+    <string name="font_size_title">文字サイズ</string>
+    <string name="font_size_label">アプリの文字サイズ</string>
+    <string name="font_size_preview">プレビューの文字は選択内容に合わせて変わります。</string>
+    <string name="network_tools_disabled_desc">外部ネットワークへのアクセスは、設定されたモデルプロバイダーとMCPサーバーに限定されます。</string>
+
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">添付を追加</string>
     <string name="camera">カメラ</string>

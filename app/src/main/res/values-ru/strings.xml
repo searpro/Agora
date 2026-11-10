@@ -2,6 +2,11 @@
     <string name="app_name">xLT - LM</string>
     <string name="agora_responded">xLT - LM ответила</string>
 
+    <string name="font_size_title">Размер текста</string>
+    <string name="font_size_label">Размер текста приложения</string>
+    <string name="font_size_preview">Размер текста предварительного просмотра соответствует выбранному значению.</string>
+    <string name="network_tools_disabled_desc">Доступ к внешней сети ограничен настроенным поставщиком модели и серверами MCP.</string>
+
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">Добавить вложение</string>
     <string name="camera">Камера</string>

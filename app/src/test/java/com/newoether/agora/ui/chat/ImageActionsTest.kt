@@ -142,7 +142,7 @@ class ImageActionsTest {
     }
 
     @Test
-    fun httpShareDetectsPngDespiteHeaderAndNameAndDownloadsOnlyOnce() = runTest {
+    fun httpShareIsRejectedWithoutMakingANetworkRequest() = runTest {
         val bytes = encodedImage(Bitmap.CompressFormat.PNG)
         val requests = AtomicInteger()
         val server = HttpServer.create(InetSocketAddress("127.0.0.1", 0), 0)
@@ -154,11 +154,9 @@ class ImageActionsTest {
         }
         server.start()
         try {
-            assertTrue(shareImage(context, "http://127.0.0.1:${server.address.port}/misleading.jpg"))
-
-            assertShared("image/png", ".png", bytes)
-            assertEquals(1, requests.get())
-            assertFalse(cache.listFiles().orEmpty().any { it.name.startsWith("image-download-") })
+            assertFalse(shareImage(context, "http://127.0.0.1:${server.address.port}/misleading.jpg"))
+            assertEquals(0, requests.get())
+            assertTrue(cache.listFiles().orEmpty().isEmpty())
         } finally {
             server.stop(0)
         }

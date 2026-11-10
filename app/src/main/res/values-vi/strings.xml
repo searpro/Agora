@@ -2,6 +2,11 @@
     <string name="app_name">xLT - LM</string>
     <string name="agora_responded">xLT - LM đã phản hồi</string>
 
+    <string name="font_size_title">Cỡ chữ</string>
+    <string name="font_size_label">Cỡ chữ ứng dụng</string>
+    <string name="font_size_preview">Văn bản xem trước sẽ điều chỉnh theo lựa chọn của bạn.</string>
+    <string name="network_tools_disabled_desc">Quyền truy cập mạng bên ngoài chỉ giới hạn ở nhà cung cấp mô hình và máy chủ MCP đã cấu hình.</string>
+
     <!-- Chat Bottom Bar -->
     <string name="add_attachment">Thêm tệp đính kèm</string>
     <string name="camera">Máy ảnh</string>
