@@ -450,7 +450,6 @@
     <string name="rating_submitting">提交中…</string>
     <string name="rating_success">感謝您的回饋！</string>
     <string name="rating_failed">提交失敗，請重試。</string>
-    <string name="rating_privacy">您的評分將以匿名方式上傳至 newoether.com。僅上傳您填寫的欄位，不會收集其他資料。</string>
 
     <!-- Data Control -->
     <string name="settings_data_control">資料控制</string>
@@ -650,7 +649,6 @@
     <string name="crash_message">很抱歉。您可以透過傳送匿名崩潰報告來協助修復此問題。</string>
     <string name="crash_submit">提交報告</string>
     <string name="crash_dismiss">不傳送</string>
-    <string name="crash_privacy_note">僅向 newoether.com 傳送崩潰記錄，不收集任何其他資訊。</string>
     <string name="crash_submitted">崩潰報告已傳送，謝謝！</string>
     <string name="conversation_fork">分支對話？</string>
     <string name="conversation_fork_menu">分支對話</string>

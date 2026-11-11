@@ -388,7 +388,6 @@
     <string name="rating_submitting">送信中…</string>
     <string name="rating_success">フィードバックありがとうございます!</string>
     <string name="rating_failed">送信に失敗しました。もう一度お試しください。</string>
-    <string name="rating_privacy">評価は匿名で newoether.com にアップロードされます。入力した項目のみが送信されます。それ以外のデータは収集されません。</string>
 
     <!-- Data Control -->
     <string name="settings_data_control">データ管理</string>
@@ -608,7 +607,6 @@
     <string name="crash_message">申し訳ありません。匿名のクラッシュレポートを送信して修正にご協力いただけます。</string>
     <string name="crash_submit">レポートを送信</string>
     <string name="crash_dismiss">送信しない</string>
-    <string name="crash_privacy_note">クラッシュログのみが newoether.com に送信されます。それ以外の情報は収集されません。</string>
     <string name="crash_submitted">クラッシュレポートを送信しました。ありがとうございます!</string>
     <string name="conversation_fork">会話を分岐しますか?</string>
     <string name="conversation_fork_menu">会話を分岐しますか</string>

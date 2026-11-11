@@ -388,7 +388,6 @@
     <string name="rating_submitting">Envoi…</string>
     <string name="rating_success">Merci pour vos retours !</string>
     <string name="rating_failed">Échec de l\'envoi. Veuillez réessayer.</string>
-    <string name="rating_privacy">Votre note sera envoyée de manière anonyme à newoether.com. Seuls les champs que vous remplissez sont transmis. Aucune autre donnée n\'est collectée.</string>
 
     <!-- Data Control -->
     <string name="settings_data_control">Contrôle des données</string>
@@ -608,7 +607,6 @@
     <string name="crash_message">Désolé pour ce désagrément. Vous pouvez aider à corriger cela en envoyant un rapport de plantage anonyme.</string>
     <string name="crash_submit">Envoyer le rapport</string>
     <string name="crash_dismiss">Ne pas envoyer</string>
-    <string name="crash_privacy_note">Seul le journal de plantage est envoyé à newoether.com. Aucune autre information n\'est collectée.</string>
     <string name="crash_submitted">Rapport de plantage envoyé. Merci !</string>
     <string name="conversation_fork">Créer une branche de la conversation ?</string>
     <string name="conversation_fork_menu">Créer une branche de la conversation</string>

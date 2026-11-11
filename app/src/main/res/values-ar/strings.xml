@@ -388,7 +388,6 @@
     <string name="rating_submitting">جارٍ الإرسال…</string>
     <string name="rating_success">شكرًا على ملاحظاتك!</string>
     <string name="rating_failed">فشل الإرسال. يرجى المحاولة مرة أخرى.</string>
-    <string name="rating_privacy">سيتم رفع تقييمك بشكل مجهول إلى newoether.com. تُرسَل الحقول التي تملؤها فقط. لا يتم جمع أي بيانات أخرى.</string>
 
     <!-- Data Control -->
     <string name="settings_data_control">التحكم في البيانات</string>
@@ -608,7 +607,6 @@
     <string name="crash_message">نعتذر عن ذلك. يمكنك المساعدة في إصلاح هذا بإرسال تقرير تعطّل مجهول.</string>
     <string name="crash_submit">إرسال التقرير</string>
     <string name="crash_dismiss">عدم الإرسال</string>
-    <string name="crash_privacy_note">يُرسَل سجل التعطّل فقط إلى newoether.com. لا يتم جمع أي معلومات أخرى.</string>
     <string name="crash_submitted">تم إرسال تقرير التعطّل. شكرًا لك!</string>
     <string name="conversation_fork">تفريع المحادثة؟</string>
     <string name="conversation_fork_menu">تفريع المحادثة</string>

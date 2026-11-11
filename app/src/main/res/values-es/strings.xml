@@ -388,7 +388,6 @@
     <string name="rating_submitting">Enviando…</string>
     <string name="rating_success">¡Gracias por tus comentarios!</string>
     <string name="rating_failed">Error al enviar. Inténtalo de nuevo.</string>
-    <string name="rating_privacy">Tu valoración se subirá de forma anónima a newoether.com. Solo se transmiten los campos que rellenes. No se recopilan otros datos.</string>
 
     <!-- Data Control -->
     <string name="settings_data_control">Control de datos</string>
@@ -608,7 +607,6 @@
     <string name="crash_message">Lo sentimos. Puedes ayudar a solucionarlo enviando un informe de fallos anónimo.</string>
     <string name="crash_submit">Enviar informe</string>
     <string name="crash_dismiss">No enviar</string>
-    <string name="crash_privacy_note">Solo se envía el registro del fallo a newoether.com. No se recopila ninguna otra información.</string>
     <string name="crash_submitted">Informe de fallos enviado. ¡Gracias!</string>
     <string name="conversation_fork">¿Bifurcar conversación?</string>
     <string name="conversation_fork_menu">Bifurcar conversación</string>

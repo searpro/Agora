@@ -388,7 +388,6 @@
     <string name="rating_submitting">Отправка…</string>
     <string name="rating_success">Спасибо за ваш отзыв!</string>
     <string name="rating_failed">Не удалось отправить. Попробуйте ещё раз.</string>
-    <string name="rating_privacy">Ваша оценка будет анонимно загружена на newoether.com. Передаются только заполненные вами поля. Никакие другие данные не собираются.</string>
 
     <!-- Data Control -->
     <string name="settings_data_control">Управление данными</string>
@@ -608,7 +607,6 @@
     <string name="crash_message">Приносим извинения. Вы можете помочь исправить это, отправив анонимный отчёт о сбое.</string>
     <string name="crash_submit">Отправить отчёт</string>
     <string name="crash_dismiss">Не отправлять</string>
-    <string name="crash_privacy_note">На newoether.com отправляется только журнал сбоя. Никакая другая информация не собирается.</string>
     <string name="crash_submitted">Отчёт о сбое отправлен. Спасибо!</string>
     <string name="conversation_fork">Создать ветку диалога?</string>
     <string name="conversation_fork_menu">Создать ветку диалога</string>

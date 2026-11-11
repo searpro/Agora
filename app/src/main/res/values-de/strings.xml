@@ -388,7 +388,6 @@
     <string name="rating_submitting">Wird gesendet…</string>
     <string name="rating_success">Danke für dein Feedback!</string>
     <string name="rating_failed">Senden fehlgeschlagen. Bitte versuche es erneut.</string>
-    <string name="rating_privacy">Deine Bewertung wird anonym an newoether.com hochgeladen. Es werden nur die von dir ausgefüllten Felder übertragen. Es werden keine weiteren Daten erfasst.</string>
 
     <!-- Data Control -->
     <string name="settings_data_control">Datenkontrolle</string>
@@ -608,7 +607,6 @@
     <string name="crash_message">Das tut uns leid. Du kannst bei der Behebung helfen, indem du einen anonymen Absturzbericht sendest.</string>
     <string name="crash_submit">Bericht senden</string>
     <string name="crash_dismiss">Nicht senden</string>
-    <string name="crash_privacy_note">Es wird nur das Absturzprotokoll an newoether.com gesendet. Es werden keine weiteren Informationen erfasst.</string>
     <string name="crash_submitted">Absturzbericht gesendet. Danke!</string>
     <string name="conversation_fork">Unterhaltung abzweigen?</string>
     <string name="conversation_fork_menu">Unterhaltung abzweigen</string>
